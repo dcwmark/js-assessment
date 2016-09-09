@@ -2,13 +2,17 @@ exports = typeof window === 'undefined' ? global : window;
 
 exports.arraysAnswers = {
   indexOf: function(arr, item) {
-      return arr.indexOf(item);
+      var ans = -1;
+      for (var x in arr) {
+          if (arr[x] === item) {
+              ans = Number(x);
+              break;
+          }
+      }
+      return ans;
   },
 
   sum: function(arr) {
-//      return arr.reduce(function(prev, curr) {
-//          return prev + curr;
-//      });
       return arr.reduce( (prev, curr) => prev + curr );
   },
 
@@ -17,9 +21,12 @@ exports.arraysAnswers = {
   },
 
   removeWithoutCopy: function(arr, item) {
-      return arr.filter(function(each) {
-          return each !== item;
-      });
+      var indx = arr.indexOf(item);
+      while(indx > -1) {
+          arr.splice(indx, 1)
+          indx = arr.indexOf(item);
+      };
+      return arr;
   },
 
   append: function(arr, item) {
@@ -43,26 +50,41 @@ exports.arraysAnswers = {
   },
 
   concat: function(arr1, arr2) {
-
+      return (arr1.join(',') + ',' + arr2.join(',')).split(',');
   },
 
   insert: function(arr, item, index) {
-
+      arr.splice(index, 0, item);
+      return arr;
   },
 
   count: function(arr, item) {
-
+      return arr.reduce(function(fold, each) {
+          return fold += (each === item) ? 1 : 0;
+      }, 0);
   },
 
   duplicates: function(arr) {
-
+      var sarr = arr.sort();
+      var i = 0, leng = sarr.length - 1;
+      var res = {};
+      for (1; i < leng; i++) {
+          if (sarr[i] === sarr[i + 1]) {
+              res[sarr[i]] = sarr[i];
+          }
+      }
+      return Object.keys(res).map( each => Number(each) ) ;
   },
 
   square: function(arr) {
-
+      return arr.map( each => each * each );
   },
 
   findAllOccurrences: function(arr, target) {
-
+      var res = [];
+      $.each(arr, function(indx, each) {
+          (each === target) ? res.push(indx) : '';
+      });
+      return res;
   }
 };

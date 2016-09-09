@@ -34,18 +34,11 @@ describe('arrays', function() {
     a.push( 2 );
 
     var result = arraysAnswers.removeWithoutCopy(a, 2);
-    console.log('result::', result);
-    console.log('a     ::', a);
 
     expect(result).to.have.length(3);
     expect(result.join(' ')).to.eql('1 3 4');
 
     // make sure that you return the same array instance
-    /**
-     * my result = [1, 3, 4]
-     * my a = [1, 2, 2, 3, 4, 2, 2]
-     * I do not understand the 'returning the original array' phrase.
-    **/
     expect(result).equal(a);
   });
 
