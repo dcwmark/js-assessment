@@ -25,6 +25,7 @@ exports.arraysAnswers = {
           (function(indx) {
               arr.splice(indx, 1);
           })( arr.indexOf(item) );
+
           if (arr.indexOf(item) < 0) {
               break;
           }
