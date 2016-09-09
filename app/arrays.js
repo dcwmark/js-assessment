@@ -69,13 +69,12 @@ exports.arraysAnswers = {
 
   duplicates: function(arr) {
       var sarr = arr.sort();
-      var i = 0, leng = sarr.length - 1;
       var res = {};
-      for (1; i < leng; i++) {
-          if (sarr[i] === sarr[i + 1]) {
-              res[sarr[i]] = sarr[i];
+      _.each(sarr, function(each, indx) {
+          if (sarr[indx] === sarr[indx + 1]) {
+              res[sarr[indx]] = sarr[indx];
           }
-      }
+      });
       return Object.keys(res).map( each => Number(each) ) ;
   },
 
